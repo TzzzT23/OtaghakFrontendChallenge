@@ -1,32 +1,41 @@
+import { useRouter } from "next/router";
+
+import type { IRoom } from "./interface";
 import styles from "./house-item.module.css";
 
-interface HouseItemProps {
-  price: number;
-  discount?: number;
-  discountPercent?: number;
-}
-
 export default function HouseItem({
-  price,
-  discount = undefined,
-  discountPercent = undefined,
-}: HouseItemProps) {
+  afterDiscount,
+  basePrice,
+  roomName,
+  totalDiscountValue,
+  id,
+}: IRoom) {
+  const { push } = useRouter();
+
+  function handleClick() {
+    push(`/room/${id}`);
+  }
+
   return (
-    <div className={styles["house-item"]} data-selector="house-item">
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={handleClick}
+      className={styles["house-item"]}
+      data-selector="house-item"
+    >
       <div className={styles["house-item--picture"]}>
         <img src="/house-template.jpg" alt="house-templates" />
       </div>
-      <div className={styles["house-item--title"]}>
-        نوشته برای تست تایتل هر کارت که باید با دیتای اصلی جایگزین شود
-      </div>
+      <div className={styles["house-item--title"]}>{roomName}</div>
       <div className={styles["house-item__footer"]}>
         <div data-selector="price">
-          هر شب از <span>{price.toLocaleString()}</span> تومان
+          هر شب از <span>{afterDiscount.toLocaleString()}</span> تومان
         </div>
-        {discount && (
+        {totalDiscountValue > 0 && (
           <div data-selector="discount">
-            <div data-selector="diff">{discount.toLocaleString()}</div>
-            <div>% {discountPercent}</div>
+            <div data-selector="diff">{basePrice.toLocaleString()}</div>
+            <div>% {totalDiscountValue}</div>
           </div>
         )}
       </div>
