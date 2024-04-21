@@ -1,0 +1,57 @@
+.house-item {
+  cursor: pointer;
+  transition: 150ms linear all;
+  border-radius: 0.625rem;
+}
+
+.house-item:hover {
+  box-shadow: 0px 0px 9px 2px #00000030;
+  transition: 150ms linear all;
+}
+
+.house-item--picture img {
+  border-radius: 0.625rem;
+  object-fit: contain;
+  width: 100%;
+}
+
+.house-item--title {
+  margin-block-start: 0.625rem;
+  margin-block-end: 0.5rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.house-item__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.house-item__footer [data-selector="price"] {
+  color: #767786;
+}
+
+.house-item__footer [data-selector="price"] > span {
+  color: #000;
+}
+
+.house-item__footer [data-selector="discount"] {
+  display: flex;
+  align-items: center;
+  column-gap: 0.25rem;
+}
+
+.house-item__footer [data-selector="discount"] > div:last-of-type {
+  background-color: #ef3857;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  color: #fff;
+}
+
+.house-item__footer [data-selector="discount"] > div[data-selector="diff"] {
+  text-decoration: line-through;
+  text-decoration-color: #ef3857;
+  color: #767786;
+}

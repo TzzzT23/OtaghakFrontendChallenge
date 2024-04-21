@@ -1,0 +1,29 @@
+.home--background {
+  position: relative;
+  margin-block-end: 1rem;
+}
+
+.home--background img {
+  object-fit: contain;
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+.home--background--overlay {
+  position: absolute;
+  inset-inline-end: 50%;
+  inset-block-start: 20%;
+  transform: translate(-50%, -50%);
+  font-size: calc(var(--default-font-size) + 3px);
+}
+
+@media screen and (max-width: 576px) {
+  .home--background {
+    padding-inline: var(--default-inline-padding);
+  }
+
+  .home--background img {
+    border-radius: 0.625rem;
+  }
+}
