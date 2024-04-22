@@ -48,13 +48,23 @@ export default function useMutation() {
         }),
       });
 
+      if (!response.ok) {
+        throw new Error(`API request failed with status ${response.status}`);
+      }
+
       const data = await response.json();
-      setState((prev) => ({ ...prev, data, isLoading: false }));
+      setState((prev) => ({
+        ...prev,
+        data,
+        isLoading: false,
+        isSuccess: true,
+      }));
       return data as RoomsData;
     } catch (err) {
       setState((prev) => ({
         ...prev,
         error: { message: (err as States["error"]).message },
+        isLoading: false,
         isError: true,
       }));
       throw err;
