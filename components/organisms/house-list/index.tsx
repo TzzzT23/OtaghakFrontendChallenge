@@ -8,7 +8,13 @@ import styles from "./house-list.module.css";
 
 export default function HouseList() {
   const { query, asPath } = useRouter();
-  const { callApi: getRooms, data, isLoading, error } = useMutation();
+  const {
+    callApi: getRooms,
+    data,
+    isLoading,
+    isSuccess,
+    error,
+  } = useMutation();
 
   useEffect(() => {
     if (asPath === "/" && !query.id) {
@@ -25,7 +31,7 @@ export default function HouseList() {
       </div>
       {isLoading && <div>در حال دریافت لیست اتاق های مورد نظر ...</div>}
       {error?.message && <div>{error.message}</div>}
-      {data && (
+      {isSuccess && (
         <div className={styles["house-list--wrapper"]}>
           {data?.rooms.map((item) => (
             <HouseItem key={item.id} {...item} />
